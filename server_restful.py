@@ -3,7 +3,6 @@ from flask_restful import Resource, Api
 from flask_cors import CORS
 import altair as alt
 import pandas as pd
-import calculate_data
 import os
 import json
 import boto3
@@ -49,6 +48,7 @@ class TestRun(Resource):
 
     def put(self, list_id):
         list[list_id] = request.form['data']
+        print(list[list_id])
         return {list_id: list[list_id]}
 
 api.add_resource(TestRun, '/<string:list_id>')
