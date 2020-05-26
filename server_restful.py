@@ -14,6 +14,30 @@ CORS(app)
 app.secret_key = 'testkey'
 
 list = {}
+datasetList = [{'value': 'NASA_Ames_MOSFET_Data', 'label': 'NASA_Ames_MOSFET_Data'}]
+testRunList = [{'value': 'MOSFET#1', 'label': 'Select...'},
+               {'value': 'MOSFET#1', 'label': 'MOSFET#1'}, 
+               {'value': 'MOSFET#2', 'label': 'MOSFET#2'}, 
+               {'value': 'MOSFET#3', 'label': 'MOSFET#3'},
+               {'value': 'MOSFET#4', 'label': 'MOSFET#4'},
+               {'value': 'MOSFET#5', 'label': 'MOSFET#5'},
+               {'value': 'MOSFET#6', 'label': 'MOSFET#6'},
+               {'value': 'MOSFET#7', 'label': 'MOSFET#7'},
+               {'value': 'MOSFET#8', 'label': 'MOSFET#8'},
+               {'value': 'MOSFET#9', 'label': 'MOSFET#9'},
+               {'value': 'MOSFET#10', 'label': 'MOSFET#10'},
+               {'value': 'MOSFET#36', 'label': 'MOSFET#36'}]
+parametersList = [{'value': 'Drain_Source_Resistance_Time', 'label': 'Drain_Source_Resistance_Time'}]
+
+list['datasetOptions'] = {
+    'datasetList': datasetList
+}
+list['testRunOptions'] = {
+    'testRunList': testRunList
+}
+list['parametersOptions'] = {
+    'parametersList': parametersList
+}
 
 def read_file_from_cloud(bucket, filename):
     s3 = boto3.resource('s3',
