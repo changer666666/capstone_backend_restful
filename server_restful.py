@@ -15,7 +15,7 @@ app.secret_key = 'testkey'
 
 list = {}
 datasetList = [{'value': 'NASA_Ames_MOSFET_Data', 'label': 'NASA_Ames_MOSFET_Data'}]
-testRunList = [{'value': '1', 'label': 'Select...'},
+testRunList = [{'value': '1', 'label': 'Choose...'},
                {'value': '1', 'label': 'MOSFET#1'}, 
                {'value': '2', 'label': 'MOSFET#2'}, 
                {'value': '3', 'label': 'MOSFET#3'},
@@ -66,7 +66,7 @@ def getChart(filename):
     ).interactive()
     return chart
 
-# menu option api
+# get menu option api
 class TestRun(Resource):
     """
     You can try this example as follow:
@@ -84,11 +84,11 @@ class TestRun(Resource):
 
 api.add_resource(TestRun, '/<string:list_id>')
 
-# get MOSFET info
-class MosfetInfo(Resource):
+# get MOSFET image api
+class MosfetImage(Resource):
     """
     You can try this example as follow:
-        $ curl http://localhost:5000/mosfet/1
+        $ curl http://localhost:5000/mosfetImage/1
         return info of MOSFET #1
     """
     def get(self, mosfet_id):
@@ -101,7 +101,26 @@ class MosfetInfo(Resource):
     #     print(mosfet_list[mosfet_id])
     #     return {mosfet_id: mosfet_list[mosfet_id]}
 
-api.add_resource(MosfetInfo, '/mosfet/<int:mosfet_id>')
+api.add_resource(MosfetImage, '/mosfetImage/<int:mosfet_id>')
+
+# get MOSFET json file api
+class MosfetJson(Resource):
+    """
+    You can try this example as follow:
+        $ curl http://localhost:5000/mosfetImage/1
+        return info of MOSFET #1
+    """
+    def get(self, mosfet_id):
+      filename = "MOSFET" + str(mosfet_id) + ".json"
+      return send_file(filename, mimetype='application/json')
+        # return {mosfet_id: mosfet_list[mosfet_id]}
+
+    # def put(self, mosfet_id):
+    #     mosfet_list[mosfet_id] = request.form['data']
+    #     print(mosfet_list[mosfet_id])
+    #     return {mosfet_id: mosfet_list[mosfet_id]}
+
+api.add_resource(MosfetJson, '/mosfetJson/<int:mosfet_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)

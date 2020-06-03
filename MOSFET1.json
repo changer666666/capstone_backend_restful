@@ -1,0 +1,8 @@
+{
+    "table": [
+      {"category": "A", "amount": 10},
+      {"category": "B", "amount": 10},
+      {"category": "C", "amount": 5},
+      {"category": "D", "amount": 5}
+    ]
+  }
